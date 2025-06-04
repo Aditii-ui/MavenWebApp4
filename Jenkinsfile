@@ -6,7 +6,7 @@ pipeline{
 	stages{
 		stage('Checkout'){
 			steps{
-				git branch: 'master', url: 'https://github.com/Aditii-ui/MavenWebApp4.git'
+				git branch: 'master', url: 'https://github.com/Aditii-ui/MavenWebApp4'
 			}
 		}
 		stage('Build'){
@@ -22,7 +22,7 @@ pipeline{
 		stage('Deploy'){
 			steps{
 				sh 'mvn clean package'
-				sh 'playbook playbook.yml -i hosts.ini'
+				sh 'ansible-playbook ansible/playbook.yml -i ansible/hosts.ini'
 			}
 		}
 	}
